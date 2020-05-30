@@ -1,6 +1,7 @@
 local udp = require('udp')
 local utils = require('utils')
 local help = require('help')
+local install = require('install')
 
 local scnvim = {}
 
@@ -56,6 +57,10 @@ end
 
 function scnvim.deinit()
   udp.stop_server()
+end
+
+function scnvim.install()
+  install.install_classes()
 end
 
 return scnvim
