@@ -102,7 +102,13 @@ Create a `symlink` (symbolic link) like in the example below. It is **important*
 
     ```shell
     mkdir -p ~/Library/Application\ Support/SuperCollider/Extensions/scide_scvim
+<<<<<<< HEAD
     ln -s <PATH_TO_SCNVIM_PLUGIN>/sc ~/Library/Application\ Support/SuperCollider/Extensions/scide_scvim
+=======
+
+    # create a symbolic link to 'sc' in the 'scide_scvim' directory named 'scnvim'
+    ln -s ~/.config/nvim/plugged/scnvim/sc ~/Library/Application\ Support/SuperCollider/Extensions/scide_scvim/scnvim
+>>>>>>> 913b20af13bfa5703c14cc21f073fee818b40572
     ```
 
   * Open a new file in `nvim` with a `.scd` or `.sc` extension and type `:SCNvimStart` to start SuperCollider.
@@ -111,6 +117,7 @@ Create a `symlink` (symbolic link) like in the example below. It is **important*
 
   * It is **important** to use absolute paths. If `~` or `$HOME` or other aliases for `/home/<USER>` is used the symbolic link will be "dangling" which renders a situation where sclang crashes immediately when started.
 
+<<<<<<< HEAD
     * If scnvim was installed via [vim-plug](https://github.com/junegunn/vim-plug) use
 
       ```shell
@@ -126,6 +133,21 @@ Create a `symlink` (symbolic link) like in the example below. It is **important*
       ```
 
   * Open a new file in `nvim` with a `.scd` or `.sc` extension and type `:SCNvimStart` to start SuperCollider.
+=======
+    ```shell
+    # create scide_scvim directory
+    mkdir -p $HOME/.local/share/SuperCollider/Extensions/scide_scvim
+    
+    # create a symbolic link to 'sc' in the 'scide_scvim' directory named 'scnvim'
+    ln -s /home/<USER>/.config/nvim/plugged/scnvim/sc /home/<USER>/.local/share/SuperCollider/Extensions/scide_scvim/scnvim
+    ```
+
+    If the above symlink does not work (you can tell this by opening up a
+    SuperCollider file and running `:SCNvimStart` - if something's wrong the
+    post window will contain errors about SC not being able to find the SCNvim
+    class files), make sure the path to the vim plugin is correct. Depending on
+    how you have configured nvim, it might be `/home/<USER>/.vim/plugged/scnvim/sc`.
+>>>>>>> 913b20af13bfa5703c14cc21f073fee818b40572
 
 #### 3. Install remote plugin (optional)
 
