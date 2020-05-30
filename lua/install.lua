@@ -61,7 +61,7 @@ end
 --- Create a symlink to the SCNvim classes
 local function link_classes()
   local scide_dir = get_scide_dir()
-  local link_target = scide_dir .. utils.path_sep .. 'scnvim'
+  local link_target = scide_dir .. utils.path_sep .. 'scnvim-arm'
   if not is_dir(scide_dir) then
     -- libuv does not have mkdir -p
     utils.vimcall('mkdir', {scide_dir, 'p'})

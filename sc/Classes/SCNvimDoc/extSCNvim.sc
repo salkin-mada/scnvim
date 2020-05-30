@@ -54,9 +54,10 @@
             // help file
             // removes .html.scnvim
             outputPath = path.drop(-12) ++ ".txt";
-            // convert to plain text with pandoc
-            "% \"%\" --from html --to plain -o \"%\"".format(pandocPath, path, outputPath).unixCmdGetStdOut;
-            msg = (action: "help_open_file", args: (uri: outputPath, pattern: pattern));
+            // convert with html2text
+            "% % > %".format(pandocPath, path, outputPath).unixCmdGetStdOut;
+	    msg = (action: "help_open_file", args: (uri: outputPath, pattern: pattern));
+
         } {
             // search for method
             msg = (action: "help_find_method", args: (method_name: uri.asString, helpTargetDir: SCDoc.helpTargetDir));
