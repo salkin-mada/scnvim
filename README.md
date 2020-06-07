@@ -73,9 +73,10 @@ You can install the plugin via [vim-plug](https://github.com/junegunn/vim-plug)
 * Add these lines to your init.vim
 
     ```vim
-    let g:scnvim_pandoc_executable = "/usr/bin/html2text"
-    call plug#begin('~/.vim/plugged') 
-        Plug 'salkin-mada/scnvim-arm', { 'do': { -> scnvim#lua#install() } }
+	let g:scnvim_scdoc_render_prg = '/usr/bin/html2text'
+	let g:scnvim_scdoc_render_args = '% > %'
+	call plug#begin('~/.vim/plugged') 
+        Plug 'salkin-mada/scnvim-arm', { 'do': { -> scnvim#install() } }
     call plug#end()
     ```
 
