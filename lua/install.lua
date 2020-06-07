@@ -50,7 +50,7 @@ function M.link()
   if not target_exists then
     local source = scnvim_root_dir .. utils.path_sep .. 'scide_scnvim'
     assert(uv.fs_symlink(source, link_target, {dir = true, junction = true}))
-    print('[scnvim] Installed to: ' .. link_target)
+    print('[scnvim-arm] Installed to: ' .. link_target)
   end
 end
 
@@ -60,7 +60,7 @@ function M.unlink()
   -- remove the link
   if is_symlink(link_target) then
     assert(uv.fs_unlink(link_target))
-    print('[scnvim] Uninstalled ' .. link_target)
+    print('[scnvim-arm] Uninstalled ' .. link_target)
   end
 end
 
