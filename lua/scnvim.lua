@@ -80,4 +80,16 @@ function scnvim.send(expr)
   utils.send_to_sc(expr)
 end
 
+function scnvim.install()
+  install.link()
+end
+
+function scnvim.uninstall()
+  install.unlink()
+end
+
+function scnvim.check_install()
+  return install.check()
+end
+
 return scnvim
