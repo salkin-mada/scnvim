@@ -35,7 +35,7 @@
         ^result;
     }
 
-    *openHelpFor {|text, pattern, pandocPath|
+    *openHelpFor {|text, pattern, renderPrg, renderArgs|
         var msg, uri, path;
         var outputPath;
 
@@ -53,11 +53,10 @@
         if (path.notNil) {
             // help file
             // removes .html.scnvim
-            outputPath = path.drop(-12) ++ ".txt";
-            // convert with html2text
-            "% % > %".format(pandocPath, path, outputPath).unixCmdGetStdOut;
-	    msg = (action: "help_open_file", args: (uri: outputPath, pattern: pattern));
-
+            outputPath = path.drop(-12) ++ ".txt";    
+            // convert to plain text
+            (renderPrg ++ " " ++ renderArgs).format(path.escapeChar($ ), outputPath.escapeChar($ )).unixCmdGetStdOut;
+            msg = (action: "help_open_file", args: (uri: outputPath, pattern: pattern));
         } {
             // search for method
             msg = (action: "help_find_method", args: (method_name: uri.asString, helpTargetDir: SCDoc.helpTargetDir));
@@ -66,8 +65,8 @@
         SCNvim.sendJSON(msg);
     }
 
-    *renderMethod {|uri, pattern, pandocPath|
+    *renderMethod {|uri, pattern, renderPrg, renderArgs|
         var name = PathName(uri).fileNameWithoutExtension;
-        SCNvim.openHelpFor(name, pattern, pandocPath);
+        SCNvim.openHelpFor(name, pattern, renderPrg, renderArgs);
     }
 }

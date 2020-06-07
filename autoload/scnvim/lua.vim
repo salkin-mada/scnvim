@@ -4,16 +4,10 @@
 
 scriptencoding utf-8
 
-autocmd scnvim VimLeavePre * call scnvim#lua#deinit()
-
 function! scnvim#lua#init() abort
   lua require('scnvim').init()
 endfunction
 
 function! scnvim#lua#deinit() abort
   lua require('scnvim').deinit()
-endfunction
-
-function! scnvim#lua#install() abort
-  lua require('scnvim').install()
 endfunction
