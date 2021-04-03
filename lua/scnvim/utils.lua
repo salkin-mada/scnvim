@@ -191,12 +191,12 @@ function M.floating_args(input)
                     else
                       minus_split = string.split(v,"-+")
                       if #minus_split > 1 then
-                          for e, w in pairs(minus_split) do
+                          for e, val in pairs(minus_split) do
                               if e ~= #minus_split then
-                                  table.insert(splitted, w.."-")
+                                  table.insert(splitted, val.."-")
                               else
-                                  if w ~= #space_split then
-                                  table.insert(splitted, w.." ")
+                                  if val ~= #space_split then
+                                  table.insert(splitted, val.." ")
                                   end
                               end
                           end
