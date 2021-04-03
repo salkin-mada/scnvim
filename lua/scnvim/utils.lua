@@ -169,18 +169,18 @@ function M.floating_args(input)
                   for k, v in pairs(space_split) do
                     punkt_split = string.split(v,"%.+")
                     if #punkt_split > 1 then
-                      for k, v in pairs(punkt_split) do
-                        minus_split = string.split(v,"-+")
+                      for t, g in pairs(punkt_split) do
+                        minus_split = string.split(g,"-+")
                         if #minus_split > 1 then
-                          for k, v in pairs(minus_split) do
-                            if k ~= #minus_split then
-                              table.insert(splitted, v.."-")
+                          for y, s in pairs(minus_split) do
+                            if y ~= #minus_split then
+                              table.insert(splitted, s.."-")
                             else
-                              table.insert(splitted, v..".")
+                              table.insert(splitted, s..".")
                             end
                           end
                         else
-                          if k ~= #punkt_split then
+                          if t ~= #punkt_split then
                             table.insert(splitted, v..".")
                           else
                             table.insert(splitted, v.." ")
@@ -190,12 +190,12 @@ function M.floating_args(input)
                     else
                       minus_split = string.split(v,"-+")
                       if #minus_split > 1 then
-                          for k, v in pairs(minus_split) do
-                              if k ~= #minus_split then
-                                  table.insert(splitted, v.."-")
+                          for e, w in pairs(minus_split) do
+                              if e ~= #minus_split then
+                                  table.insert(splitted, w.."-")
                               else
-                                  if v ~= #space_split then
-                                  table.insert(splitted, v.." ")
+                                  if w ~= #space_split then
+                                  table.insert(splitted, w.." ")
                                   end
                               end
                           end
@@ -207,7 +207,7 @@ function M.floating_args(input)
 
                   local first_line = true
                   -- local max_encountered_line_len = 0
-                  local showbreak_size = 0 --[[
+                  showbreak_size = 0 --[[
                                     showbreak char(s) does not occupy the first window line
                                     init to zero (pre first line break)
                                            --]]
@@ -268,13 +268,13 @@ function M.floating_args(input)
                         return state, codep;
                       end
 
-                      function utf8_str_iter(utf8string, len)
-                        len = len or #utf8string
+                      function utf8_str_iter(utf8string, length)
+                        length = length or #utf8string
                         local state = UTF8_ACCEPT
                         local codep =0;
                         local offset = 0;
                         local ptr = ffi.cast("uint8_t *", utf8string)
-                        local bufflen = len;
+                        local bufflen = length;
 
                         return function()
                           while offset < bufflen do
@@ -290,9 +290,9 @@ function M.floating_args(input)
                         end
                       end
 
-                      function utf8_str_len(utf8string, len)
+                      function utf8_str_len(utf8string, length)
                         local count = 0;
-                        for codepoint, err in utf8_str_iter(utf8string,len) do
+                        for codepoint, err in utf8_str_iter(utf8string,length) do
                           count = count + 1
                         end
                         return count
