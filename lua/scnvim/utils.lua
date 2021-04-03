@@ -120,6 +120,7 @@ function M.floating_args(input)
     vim.api.nvim_buf_delete(identified_bufnr, {})
   else
       print("AAA")
+      print(input)
     -- dont create buffer and window if input string len is 0 aka no return string
     if string.len(input) > 0 then
       print("BBB")
