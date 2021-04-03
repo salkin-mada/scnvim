@@ -119,13 +119,17 @@ function M.floating_args(input)
   if vim.api.nvim_buf_is_loaded(identified_bufnr) then
     vim.api.nvim_buf_delete(identified_bufnr, {})
   else
+      print("AAA")
     -- dont create buffer and window if input string len is 0 aka no return string
     if string.len(input) > 0 then
+      print("BBB")
       local args_string
       local len
       local function callback(result)
         if result ~= nil then
+      print("CCC")
           if string.len(result) > 0 then
+      print("DDD")
             if not vim.g.scnvim_floating_args_full then
               args_string = string.match(result, "*(.*)") -- remove classname
               args_string = string.match(args_string, " (.*)") -- remove method
@@ -142,6 +146,7 @@ function M.floating_args(input)
 
             -- dont use callback inner if result len is empty
             if len > 0 then
+      print("EEE")
               local w = len
               local h = 1
               local max_width = vim.g.scnvim_floating_args_max_width or 40
@@ -158,6 +163,7 @@ function M.floating_args(input)
               end
               if w > max_width then
                 if vim.g.scnvim_floating_args_linebreak then
+      print("FFF")
                   w = max_width
                   local worker_string = args_string
                   local chars_in_line = 0
