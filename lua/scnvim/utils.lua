@@ -109,6 +109,7 @@ function string.split(s,re,plain,n)
 end
 
 function M.floating_args(input)
+    print("WTF")
   -- input = input or ""
   local name = '[scnvim-method-args]_'
   local current_buffer = vim.api.nvim_get_current_buf()
