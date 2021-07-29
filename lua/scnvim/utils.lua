@@ -176,9 +176,10 @@ end
 
 -- function M.floating_args(input)
 function M.floating_args()
-  -- input = vim.fn.expand("<cexpr>")
-  -- input = vim.fn.expand("<cword>")
-  input = vim.fn.expand("<cWORD>")
+  input = vim.fn.expand("<cexpr>")
+  -- input_strict = vim.fn.expand("<cword>")
+  -- print(input_strict)
+  -- input = vim.fn.expand("<cWORD>")
   -- local pos = vim.api.nvim_win_get_cursor(0)[2]
   -- local line_content = vim.api.nvim_get_current_line()
   -- print(line_content)
