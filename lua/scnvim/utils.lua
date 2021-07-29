@@ -140,6 +140,7 @@ function M.tbl_len(T)
   return count
 end
 
+
 ------------------
 --- Floating args
 ------------------
@@ -173,7 +174,19 @@ function string.split(s,re,plain,n)
     end
 end
 
-function M.floating_args(input)
+-- function M.floating_args(input)
+function M.floating_args()
+  -- input = vim.fn.expand("<cexpr>")
+  -- input = vim.fn.expand("<cword>")
+  input = vim.fn.expand("<cWORD>")
+  -- local pos = vim.api.nvim_win_get_cursor(0)[2]
+  -- local line_content = vim.api.nvim_get_current_line()
+  -- print(line_content)
+  -- print(input)
+  -- input = line_content;
+  -- local cl = vim.api.nvim_buf_get_lines(0,linenr,linenr+1,false)[1]
+  -- local cl = vim.api.nvim_get_current_line
+  -- print(cl)
   -- input = input or ""
   local name = '[scnvim-method-args]_'
   local current_buffer = vim.api.nvim_get_current_buf()
