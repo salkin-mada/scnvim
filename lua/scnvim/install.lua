@@ -4,19 +4,31 @@
 -- @author David Granström
 -- @license GPLv3
 
-local M = {}
-local utils = require('scnvim/utils')
+local utils = require'scnvim.utils'
+
 local uv = vim.loop
+local M = {}
 
 local scnvim_root_dir = utils.get_scnvim_root_dir()
 local home_dir = uv.os_homedir()
+local extension_dirs
 
--- indexed with keys returned by uname
-local extension_dirs = {
-  Darwin = home_dir .. '/Library/Application Support/SuperCollider/Extensions',
-  Linux = home_dir .. '/.local/share/SuperCollider/Extensions',
-  Windows = home_dir .. '\\AppData\\Local\\SuperCollider\\Extensions',
-}
+local xdg_data_home = uv.os_getenv('XDG_DATA_HOME')
+if xdg_data_home then
+  local extensions = xdg_data_home .. '/SuperCollider/Extensions'
+  -- indexed with keys returned by uname
+  extension_dirs = {
+    Darwin = extensions,
+    Linux = extensions,
+    Windows = home_dir .. '\\AppData\\Local\\SuperCollider\\Extensions',
+  }
+else
+  extension_dirs = {
+    Darwin = home_dir .. '/Library/Application Support/SuperCollider/Extensions',
+    Linux = home_dir .. '/.local/share/SuperCollider/Extensions',
+    Windows = home_dir .. '\\AppData\\Local\\SuperCollider\\Extensions',
+  }
+end
 
 -- Utils
 
